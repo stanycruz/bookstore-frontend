@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [claims, setClaims] = useState<any[]>([]);
 
   useEffect(() => {
-    api.get('/v1/claims')
+    api.get('/claims')
       .then(res => setClaims(res.data))
       .catch(err => console.error('Erro ao buscar claims', err));
   }, []);

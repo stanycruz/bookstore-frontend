@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 
-export default function Admin() {
+const Admin = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    api.get('/v1/admin')
-      .then((res) => setMessage(res.data))
-      .catch(() => setMessage('Acesso negado ou erro na requisição'));
+    api.get('/admin')
+      .then(response => setMessage(response.data))
+      .catch(() => setMessage('Erro ao carregar dados da rota /admin.'));
   }, []);
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Área do Administrador</h1>
-      <p className="bg-white text-gray-800 shadow rounded p-4">{message}</p>
+      <h1 className="text-2xl font-bold mb-4">Área do Admin</h1>
+      <p>{message}</p>
     </div>
   );
-}
+};
+
+export default Admin;
