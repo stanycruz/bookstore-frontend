@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
 import Admin from './pages/Admin';
 import Owner from './pages/Owner';
 import Grocery from './pages/Grocery';
+import Maintainer from './pages/Maintainer';
+import Rookie from './pages/Rookie';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route
           path="/admin"
           element={
@@ -29,14 +29,29 @@ function App() {
         <Route
           path="/grocery"
           element={
-            <ProtectedRoute roles={['maintainer', 'admin']}>
+            <ProtectedRoute roles={['admin', 'owner', 'maintainer', 'rookie']}>
               <Grocery />
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/maintainer"
+          element={
+            <ProtectedRoute roles={['maintainer']}>
+              <Maintainer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/rookie"
+          element={
+            <ProtectedRoute roles={['rookie']}>
+              <Rookie />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<h1>Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;
