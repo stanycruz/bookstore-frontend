@@ -6,10 +6,12 @@ import Maintainer from './pages/Maintainer';
 import Rookie from './pages/Rookie';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Dashboard />
       <Navbar />
       <Routes>
         <Route
