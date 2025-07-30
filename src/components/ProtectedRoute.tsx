@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+import keycloak from '../auth/keycloak';
 
 type Props = {
   roles: string[];
