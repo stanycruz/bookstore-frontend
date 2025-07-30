@@ -5,10 +5,12 @@ import Grocery from './pages/Grocery';
 import Maintainer from './pages/Maintainer';
 import Rookie from './pages/Rookie';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route
           path="/admin"
