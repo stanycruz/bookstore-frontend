@@ -11,9 +11,9 @@ export default function Admin() {
   }, []);
 
   return (
-    <div>
-      <h1>Admin</h1>
-      <p>{message}</p>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Área do Administrador</h1>
+      <p className="bg-white text-gray-800 shadow rounded p-4">{message}</p>
     </div>
   );
 }
