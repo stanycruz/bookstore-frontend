@@ -4,6 +4,7 @@ import Owner from './pages/Owner';
 import Grocery from './pages/Grocery';
 import Maintainer from './pages/Maintainer';
 import Rookie from './pages/Rookie';
+import Unauthorized from './pages/Unauthorized';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -54,6 +55,11 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* TODO: Página para acessos não autorizados */}
+        <Route path="/unauthorized" element={<Unauthorized />} />
+
+        {/* TODO: Fallback para qualquer rota inexistente */}
         <Route path="*" element={<h1>Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
