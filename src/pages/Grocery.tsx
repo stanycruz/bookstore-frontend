@@ -12,14 +12,14 @@ const Grocery: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 to-green-300 flex items-center justify-center px-4">
-      <div className="bg-white shadow-xl rounded-xl p-8 max-w-xl w-full">
-        <h1 className="text-3xl font-extrabold text-green-800 mb-4 text-center">
+    <main className="min-h-screen bg-zinc-900 text-white flex items-center justify-center px-4">
+      <div className="bg-zinc-800 border border-zinc-700 shadow-xl rounded-xl p-8 max-w-xl w-full text-center">
+        <h1 className="text-3xl font-extrabold text-green-400 mb-4">
           Área da Grocery 🛒
         </h1>
-        <p className="text-gray-700 text-lg text-center">{message}</p>
+        <p className="text-zinc-300 text-lg">{message}</p>
       </div>
-    </div>
+    </main>
   );
 };
 
