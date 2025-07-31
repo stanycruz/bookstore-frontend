@@ -3,7 +3,12 @@ import keycloak from '../auth/keycloak';
 import api from '../services/api';
 
 export default function Dashboard() {
-  const [claims, setClaims] = useState<any[]>([]);
+  type Claim = {
+    type: string;
+    value: string;
+  };
+
+  const [claims, setClaims] = useState<Claim[]>([]);
 
   useEffect(() => {
     api.get('/claims')

@@ -13,13 +13,20 @@ import Welcome from './pages/Welcome';
 export default function App() {
   return (
     <BrowserRouter>
-      <Dashboard />
       <Navbar />
       <Routes>
         <Route
           path="/"
           element={
             <Welcome />
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute roles={['admin', 'owner', 'maintainer', 'rookie']}>
+              <Dashboard />
+            </ProtectedRoute>
           }
         />
         <Route
