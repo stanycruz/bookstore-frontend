@@ -8,7 +8,6 @@ import Unauthorized from './pages/Unauthorized';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
-import Welcome from './pages/Welcome';
 
 export default function App() {
   return (
@@ -17,12 +16,6 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <Welcome />
-          }
-        />
-        <Route
-          path="/dashboard"
           element={
             <ProtectedRoute roles={['admin', 'owner', 'maintainer', 'rookie']}>
               <Dashboard />
@@ -40,7 +33,7 @@ export default function App() {
         <Route
           path="/owner"
           element={
-            <ProtectedRoute roles={['owner']}>
+            <ProtectedRoute roles={['admin', 'owner']}>
               <Owner />
             </ProtectedRoute>
           }
@@ -48,7 +41,7 @@ export default function App() {
         <Route
           path="/grocery"
           element={
-            <ProtectedRoute roles={['admin', 'owner', 'maintainer', 'rookie']}>
+            <ProtectedRoute roles={['owner', 'grocery', 'maintainer']}>
               <Grocery />
             </ProtectedRoute>
           }
@@ -56,7 +49,7 @@ export default function App() {
         <Route
           path="/maintainer"
           element={
-            <ProtectedRoute roles={['maintainer']}>
+            <ProtectedRoute roles={['grocery', 'maintainer']}>
               <Maintainer />
             </ProtectedRoute>
           }
@@ -70,7 +63,6 @@ export default function App() {
           }
         />
 
-        {/* TODO: Página para acessos não autorizados */}
         <Route path="/unauthorized" element={<Unauthorized />} />
 
         {/* TODO: Fallback para qualquer rota inexistente */}
