@@ -5,7 +5,8 @@ const Grocery: React.FC = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    api.get('/grocery')
+    api
+      .get('/grocery')
       .then(response => setMessage(response.data))
       .catch(() => setMessage('Erro ao carregar dados da rota /grocery.'));
   }, []);
