@@ -15,8 +15,8 @@ dist/
 dist-ssr/
 
 # Env files
-+ .env
-+ .env.*.local
+.env
+.env.*.local
 
 # Editor directories and files
 .vscode/*
@@ -29,7 +29,12 @@ dist-ssr/
 *.sln
 *.sw?
 
-# Optional cache
-+ .eslintcache
-+ .cache/
-+ *.tsbuildinfo
+# Cache
+.eslintcache
+.cache/
+*.tsbuildinfo
+
+# Proteção contra regras genéricas de lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

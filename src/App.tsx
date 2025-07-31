@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Admin from './pages/Admin';
+import Owner from './pages/Owner';
+import Grocery from './pages/Grocery';
+import Maintainer from './pages/Maintainer';
+import Rookie from './pages/Rookie';
+import Unauthorized from './pages/Unauthorized';
+import NotFound from './pages/NotFound';
+import Dashboard from './components/Dashboard';
+import { ProtectedRoute } from './routes/ProtectedRoute';
+import Layout from './layouts/Layout';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute roles={['admin', 'owner', 'maintainer', 'rookie']}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute roles={['admin']}>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/owner"
+            element={
+              <ProtectedRoute roles={['admin', 'owner']}>
+                <Owner />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/grocery"
+            element={
+              <ProtectedRoute roles={['owner', 'grocery', 'maintainer']}>
+                <Grocery />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/maintainer"
+            element={
+              <ProtectedRoute roles={['grocery', 'maintainer']}>
+                <Maintainer />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/rookie"
+            element={
+              <ProtectedRoute roles={['rookie']}>
+                <Rookie />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
 
-export default App
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
