@@ -5,7 +5,7 @@ import Grocery from './pages/Grocery';
 import Maintainer from './pages/Maintainer';
 import Rookie from './pages/Rookie';
 import Unauthorized from './pages/Unauthorized';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { ProtectedRoute } from './routes/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 
