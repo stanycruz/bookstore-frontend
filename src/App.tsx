@@ -8,6 +8,7 @@ import Unauthorized from './pages/Unauthorized';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -62,11 +63,8 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route path="/unauthorized" element={<Unauthorized />} />
-
-        {/* TODO: Fallback para qualquer rota inexistente */}
-        <Route path="*" element={<h1>Página não encontrada</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
