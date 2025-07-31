@@ -12,10 +12,12 @@ const Rookie: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 flex flex-col items-center justify-center px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Área do Rookie</h1>
-      <p className="text-gray-700 text-lg text-center max-w-xl">{message}</p>
-    </div>
+    <main className="min-h-screen bg-zinc-900 text-white flex flex-col items-center justify-center px-4">
+      <div className="bg-zinc-800 border border-zinc-700 p-6 rounded-xl shadow-md w-full max-w-2xl text-center">
+        <h1 className="text-3xl font-bold text-zinc-100 mb-4">Área do Rookie</h1>
+        <p className="text-zinc-300 text-lg">{message}</p>
+      </div>
+    </main>
   );
 };
 
