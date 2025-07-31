@@ -1,69 +1,124 @@
-# React + TypeScript + Vite
+# 📚 Bookstore Frontend (SSO com Keycloak)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é o frontend de uma aplicação de exemplo que utiliza **React**, **Vite**, **TailwindCSS** e **Keycloak** para autenticação e autorização com **Single Sign-On (SSO)**.
 
-Currently, two official plugins are available:
+A proposta é demonstrar de forma clara como estruturar um frontend moderno e seguro, com navegação protegida por papéis (roles) definidos no Keycloak, utilizando uma interface limpa e agradável com o auxílio do TailwindCSS no estilo **shadcn/ui**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **React 18**
+- ⚡ **Vite**
+- 💨 **TailwindCSS v3**
+- 🔐 **Keycloak SSO (via keycloak-js)**
+- 🌐 **React Router DOM**
+- 🧠 **TypeScript**
+- 🎨 Estilo baseado em **shadcn/ui**
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🔐 Funcionalidades Principais
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- ✅ Login via Keycloak com SSO
+- 🔄 Logout automático e manual
+- 🔒 Rotas protegidas por papéis (`admin`, `owner`, `grocery`, `maintainer`, `rookie`)
+- 🎯 Validação de token via JWT (`tokenParsed`)
+- 🧭 Navbar fixa com acesso rápido às áreas autorizadas
+- 🎉 Páginas estilizadas com layout responsivo
+- ❌ Página de acesso negado (`/unauthorized`)
+- ❓ Página de erro 404 para rotas inexistentes
+
+---
+
+## 🧪 Pré-requisitos
+
+- Node.js (>= 18.x)
+- NPM ou Yarn
+- Keycloak configurado e em execução com:
+  - Realm criado
+  - Cliente configurado com:
+    - `Access Type`: **public**
+    - `Valid Redirect URIs`: `http://localhost:5173/*`
+    - `Web Origins`: `*`
+  - Papéis (`roles`) definidos no realm
+
+---
+
+## ⚙️ Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/bookstore-frontend.git
+cd bookstore-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Instale as dependências:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+3. Configure o Keycloak:
+
+Edite o arquivo `src/auth/keycloak.ts`:
+
+```ts
+keycloak.init({
+  url: 'http://localhost:8080',
+  realm: 'seu-realm',
+  clientId: 'seu-cliente',
+});
+```
+
+---
+
+## 🧭 Scripts Disponíveis
+
+```bash
+# Inicia o projeto localmente
+npm run dev
+
+# Compila para produção
+npm run build
+
+# Visualiza o build localmente
+npm run preview
+```
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```
+src/
+├── auth/                # Configuração do Keycloak
+├── components/          # Navbar, Dashboard e componentes reutilizáveis
+├── layouts/             # Layout global com Navbar + Outlet
+├── pages/               # Páginas por tipo de usuário
+├── routes/              # Componente ProtectedRoute.tsx
+├── services/            # API com Axios
+├── styles/              # Tailwind
+└── App.tsx              # Configuração de rotas
+```
+
+---
+
+## 👤 Papéis Suportados
+
+Os papéis são definidos diretamente no token JWT do Keycloak e utilizados para proteger o acesso às rotas.
+
+| Rota         | Papel Necessário           |
+|--------------|----------------------------|
+| `/admin`     | `admin`                    |
+| `/owner`     | `owner`                    |
+| `/grocery`   | `admin`, `owner`, etc.     |
+| `/maintainer`| `maintainer`               |
+| `/rookie`    | `rookie`                   |
+
+---
+
+## 📸 Imagens
+
+> Adicione aqui prints das páginas principais (login, dashboard, cada rota com seus papéis).
