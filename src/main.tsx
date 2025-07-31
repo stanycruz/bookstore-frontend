@@ -4,6 +4,8 @@ import App from './App';
 import keycloak from './auth/keycloak';
 import './index.css';
 
+document.documentElement.classList.add('dark');
+
 keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
   if (authenticated) {
     // 🔁 Atualiza o token a cada 10 segundos, se faltar menos de 30 segundos para expirar
