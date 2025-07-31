@@ -8,6 +8,7 @@ import Unauthorized from './pages/Unauthorized';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
+import Welcome from './pages/Welcome';
 
 export default function App() {
   return (
@@ -15,6 +16,12 @@ export default function App() {
       <Dashboard />
       <Navbar />
       <Routes>
+        <Route
+          path="/"
+          element={
+            <Welcome />
+          }
+        />
         <Route
           path="/admin"
           element={
